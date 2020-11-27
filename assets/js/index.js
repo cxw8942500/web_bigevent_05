@@ -43,7 +43,7 @@ function renderAvatar(user) {
     $('#welcome').html(`欢迎 ${name}`)
     if (user.user_pic === null) {
         $('.layui-nav-img').hide()
-        var text = name[0].toUppCase()
+        var text = name[0].toUpperCase()
         $('.text_avatar').html(text).show()
     } else {
         $('.text_avatar').hide()
