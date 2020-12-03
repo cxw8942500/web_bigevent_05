@@ -13,14 +13,107 @@
 
 <body>
     <div class="layui-card">
-        <div class="layui-card-header">文章类别管理
+        <div class="layui-card-header">
+            <span>文章类别管理</span>
+            <button id="add-class" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit
+                lay-filter="formDemo">添加内别</button>
         </div>
         <div class="layui-card-body">
-            卡片式面板面板通常用于非白色背景色的主体内<br>
-            从而映衬出边框投影
+            <!-- 文章类别管理列表 -->
+            <table class="layui-table">
+                <colgroup>
+                    <col>
+                    <col>
+                    <col width="200">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>分类名称</th>
+                        <th>分类别名</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr>
+                        <td>贤心</td>
+                        <td>2016-11-29</td>
+                        <td>人生就像是一场修行</td>
+                    </tr> -->
+                </tbody>
+            </table>
         </div>
     </div>
 
+
+
+    <!-- 引入模板引擎 -->
+    <script src="/assets/lib/template-web.js"></script>
+    <!-- 定义分类管理的模板 -->
+    <script type="text/html" id="tpl-Class">
+    {{each data}}
+    <tr>
+        <td>{{$value.name}}</td>
+        <td>{{$value.alias}}</td>
+        <td>
+            <button data-id = '{{$value.Id}}' class="layui-btn layui-btn-xs btn-edit" lay-submit lay-filter="formDemo">编辑</button>
+            <button data-id = '{{$value.Id}}' class="layui-btn layui-btn-xs layui-btn-danger btn-del" lay-submit lay-filter="formDemo">删除</button>
+        </td>
+    </tr>
+    {{/each}}
+    </script>
+
+    <!-- 添加类别表单 -->
+    <script type="text/html" id="scr-add">
+        <form class="layui-form" id="form-add">
+            <!-- 分内名称 -->
+            <div class="layui-form-item">
+              <label class="layui-form-label">分类名称</label>
+              <div class="layui-input-block">
+                <input type="text" name="name" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <!-- 分内别名 -->
+            <div class="layui-form-item">
+              <label class="layui-form-label">分类别名</label>
+              <div class="layui-input-block">
+                <input type="text" name="alias" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <!-- 提交 -->
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit lay-filter="formDemo">确认添加</button>
+                  <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+              </div>
+        </form>
+    </script>
+    <!-- 修改类别表单 -->
+    <script type="text/html" id="scr-alter">
+        <form class="layui-form" id="form-ater" lay-filter="form-ater" >
+            <input type="hidden" name="Id">
+            <!-- 分内名称 -->
+            <div class="layui-form-item">
+              <label class="layui-form-label">分类名称</label>
+              <div class="layui-input-block">
+                <input type="text" name="name" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <!-- 分内别名 -->
+            <div class="layui-form-item">
+              <label class="layui-form-label">分类别名</label>
+              <div class="layui-input-block">
+                <input type="text" name="alias" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <!-- 提交 -->
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit lay-filter="formDemo">确认修改</button>
+                </div>
+              </div>
+        </form>
+    </script>
 
     <script src="/assets/lib/layui/layui.all.js"></script>
     <script src="/assets/lib/jquery.js"></script>
